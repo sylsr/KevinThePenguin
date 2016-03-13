@@ -26,14 +26,15 @@ clean() {
 	cd ../bin
 	rm -rf *
 	echo "rm -rf *"
-	cd ../build/output
-	rm -rf *.jar
-	cd ../
+	cd ../build
+	rm -rf output
+	
 }
 
 createjar() {
 #create the jar file
 echo "Creating executable jar"
+mkdir ../build/output
 jar cfe ../build/output/app.jar org.kevin.main.LaunchKevin org/kevin/main/LaunchKevin.class
 echo "jar created in /build/output/"
 }
