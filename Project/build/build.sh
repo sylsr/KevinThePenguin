@@ -52,3 +52,8 @@ cd ../../../bin
 createjar
 
 echo "Build finish: $(timestamp)"
+
+if [[ $1 == debug ]];then
+	cd ../build/output
+	start "" "$SHELL" -c "java -jar app.jar"
+fi
