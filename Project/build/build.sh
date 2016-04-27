@@ -8,17 +8,25 @@ timestamp() {
 
 compile() {
 	#Go through all dirs and build java files into class files, then moves them to the bin dir
-	for d in $(PWD)/*
+	echo "Core COMPILE:"
+	#Just prints stuff out
+	for dir in $(PWD)/*
 	do
-	  echo "Compile in $d"
-	  for f in $d/*
+	  echo "	In: $dir"
+	  for fl in $dir/*
 	  do
-	  	if [[ $f == *.java ]];then
-			echo "	javac $f"
-			javac $f -d ../../../bin
+	  	if [[ $fl == *.java ]];then
+	  		filename="${fl##*/}"
+			echo "		$filename"
 	    fi
 	  done
 	done
+	
+	#Does the actual compile
+	cd ../../
+	echo $(PWD)
+	dir=$(PWD)/*/*.java
+	javac -cp -nowarn $dir org.kevin.main.LaunchKevin.java
 }
 
 clean() {
@@ -35,7 +43,7 @@ createjar() {
 #create the jar file
 echo "Creating executable jar"
 mkdir ../build/output
-jar cfe ../build/output/app.jar org.kevin.main.LaunchKevin org/kevin/main/LaunchKevin.class
+jar cfe ../build/output/app.jar org.kevin.main.LaunchKevin org/kevin/main/LaunchKevin.class || { echo "Build Failed: $(timestamp)"; exit 1; }
 echo "jar created in /build/output/"
 }
 
