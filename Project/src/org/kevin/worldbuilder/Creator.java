@@ -6,5 +6,10 @@ package org.kevin.worldbuilder;
  *
  */
 public class Creator {
-
+	/**
+	 * 
+	 */
+	public void testMessage(){
+		System.out.println("Test Log");
+	}
 }
