@@ -5,3 +5,5 @@ Project/db/installers/win64/sqlite-dll-win64-x64-3120200/
 Project/db/installers/linux/sqlite-tools-linux-x86-3120200/
 Project/db/installers/mac/sqlite-tools-osx-x86-3120200/
 Project/db/installers/win32/sqlite-dll-win32-x86-3120200/
+Project/db/installers/winTools/sqlite-tools-win32-x86-3120200.zip
+Project/.classpath
