@@ -33,7 +33,7 @@ public class GraphicsCreator {
 	
 	/**
 	 * @param toTransform the svg diagram that needs transformation to fit the screen or whatever
-	 * @return the transformed svg diagram
+	 * @return the transformed svg diagram.
 	 */
 	public SVGDiagram transform(SVGDiagram toTransform){
 		//apply transformations to fit image to selected resolution
