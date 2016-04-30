@@ -1,67 +1,36 @@
 #! /bin/bash
 #Author: Tyler Manning
-BASEPACKDIR="../src/org/kevin/"
+BUILD_DIR=$(PWD)
+cd ../
+BASEDIR=$(PWD)
 
-timestamp() {
-  date +"%T"
+compile(){
+echo Createing directory $BUILD_DIR/output
+mkdir $BUILD_DIR/output
+#Compile all java sources
+cd $BASEDIR
+echo Moving into $BASEDIR for compile
+rm -rf $BUILD_DIR/sources.txt
+cmd.exe /C "dir /s /B "*.java" > build\sources.txt"
+echo Generated $BUILD_DIR/sources.txt
+javac -verbose @$BUILD_DIR/sources.txt -d $BASEDIR/bin
+echo Creating jar file in $BUILD_DIR/output
+cd $BASEDIR
+cd bin
+jar cvmf META-INF/MANIFEST.MF ../build/output/app.jar org/kevin/*/*
+
 }
 
-compile() {
-	#Go through all dirs and build java files into class files, then moves them to the bin dir
-	echo "Core COMPILE:"
-	#Just prints stuff out
-	for dir in $(PWD)/*
-	do
-	  echo "	In: $dir"
-	  for fl in $dir/*
-	  do
-	  	if [[ $fl == *.java ]];then
-	  		filename="${fl##*/}"
-			echo "		$filename"
-	    fi
-	  done
-	done
-	
-	#Does the actual compile
-	cd ../../
-	echo $(PWD)
-	dir=$(PWD)/*/*.java
-	javac -cp -nowarn $dir org.kevin.main.LaunchKevin.java
-}
-
-clean() {
-	echo "Cleaning repo"
-	cd ../bin
-	rm -rf *
-	echo "rm -rf *"
-	cd ../build
-	rm -rf output
-	
-}
-
-createjar() {
-#create the jar file
-echo "Creating executable jar"
-mkdir ../build/output
-jar cfe ../build/output/app.jar org.kevin.main.LaunchKevin org/kevin/main/LaunchKevin.class || { echo "Build Failed: $(timestamp)"; exit 1; }
-echo "jar created in /build/output/"
+clean(){
+cd $BUILD_DIR
+echo DELETING GENERATED DIRECTORY $BUILD_DIR/output/
+rm -rf output/
+echo DELETING GENERATED FILE $BUILD_DIR/sources.txt
+rm -rf sources.txt
+cd $BASEDIR
+echo DELETING GENERATED DIRECTORY $BASEDIR/bin/org
+rm -rf bin/org/
 }
 
 clean
-echo "Build Begin: $(timestamp)"
-echo "cd $BASEPACKDIR"
-cd $BASEPACKDIR
-
 compile
-
-#move to bin folder
-cd ../../../bin
-
-createjar
-
-echo "Build finish: $(timestamp)"
-
-if [[ $1 == debug ]];then
-	cd ../build/output
-	start "" "$SHELL" -c "java -jar app.jar"
-fi

@@ -34,7 +34,12 @@ public class NativeController {
 	 */
 	public void CreateTable(String tableName) throws SQLException{
 		Statement stmt = c.createStatement();
-		String execute = "CREATE TABLE "+tableName+" ();";
+		String execute = "CREATE TABLE COMPANY " +
+                "(ID INT PRIMARY KEY     NOT NULL," +
+                " NAME           TEXT    NOT NULL, " + 
+                " AGE            INT     NOT NULL, " + 
+                " ADDRESS        CHAR(50), " + 
+                " SALARY         REAL)";
 		System.out.println(execute);
 		stmt.executeUpdate(execute);
 	    if(stmt!=null){
