@@ -18,7 +18,7 @@ for i in $LIB/*.jar; do
 done
 CLASSPATH=`echo $CLASSPATH | cut -c2-`
 
-echo $CLASSPATH
+echo CLASSPATH: $CLASSPATH
 
 echo Moving into $BASEDIR for compile
 rm -rf $BUILD_DIR/sources.txt
@@ -26,6 +26,21 @@ cmd.exe /C "dir /s /B "*.java" > build\sources.txt"
 
 echo Generated $BUILD_DIR/sources.txt
 javac -verbose -classpath $CLASSPATH @$BUILD_DIR/sources.txt -d $BASEDIR/bin
+
+echo Creating new MANIFEST.MF
+cd $BASEDIR/lib
+for i in *
+do
+dependencies="$dependencies jars/$i"
+done	
+cd $BUILD_DIR/META-INF
+rm -rf MANIFEST.MF
+echo Manifest-Version: 1.0 >> MANIFEST.MF
+echo Class-Path: $dependencies >> MANIFEST.MF
+echo Main-Class: org.kevin.main.LaunchKevin >>MANIFEST.MF
+
+echo Copying libs folder
+cp -r $BASEDIR/lib/ $BUILD_DIR/output/jars/
 
 echo Creating jar file in $BUILD_DIR/output
 cd $BASEDIR

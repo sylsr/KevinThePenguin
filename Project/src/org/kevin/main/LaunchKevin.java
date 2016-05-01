@@ -1,9 +1,11 @@
 package org.kevin.main;
 
 import java.awt.Dimension;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 
+import org.kevin.db.NativeController;
 import org.kevin.worldbuilder.Creator;
 
 public class LaunchKevin {
@@ -17,6 +19,18 @@ public class LaunchKevin {
 		
 		frame.pack();
 		frame.setVisible(true);
+		
+		try {
+			NativeController db = new NativeController();
+			db.CreateTable("another");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
 		
 	}
 	
