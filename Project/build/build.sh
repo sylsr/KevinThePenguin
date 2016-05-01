@@ -69,17 +69,30 @@ cd output
 $BASEDIR/db/installers/winTools/sqlite-tools-win32-x86-3120200/sqlite3.exe kevin.db "CREATE TABLE test (ID INT PRIMARY KEY NOT NULL)"
 }
 
-clean
-compile
+if [ $1 == 'clean' ]
+then
+	echo Cleaning the working build.
+	clean
+fi
+
+if [ $1 == 'run' ]
+then
+	echo Running the jar without build.
+	cmd.exe /C "java -jar app.jar -zxcvbnmasdfghjklqwertyuiop"
+fi
 
 if [ $1 == 'debug' ]
 then
+	clean
+	compile
 	cd $BUILD_DIR/output
 	cmd.exe /C "java -jar app.jar -zxcvbnmasdfghjklqwertyuiop"
 fi
 
 if [ $1 == 'release' ]
 then
+	clean
+	compile
 	cd $BUILD_DIR/output
 	java -jar app.jar
 fi
