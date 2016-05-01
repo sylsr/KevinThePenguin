@@ -13,7 +13,6 @@ mkdir $BUILD_DIR/output
 cd $BASEDIR
 echo Adding dependencies to the classpath
 
-
 for i in $LIB/*.jar; do
     CLASSPATH=$CLASSPATH:$i
 done
@@ -31,8 +30,9 @@ javac -verbose -classpath $CLASSPATH @$BUILD_DIR/sources.txt -d $BASEDIR/bin
 echo Creating jar file in $BUILD_DIR/output
 cd $BASEDIR
 cd bin
-jar cvmf META-INF/MANIFEST.MF ../build/output/app.jar org/kevin/*/*
+jar cvmf ../build/META-INF/MANIFEST.MF ../build/output/app.jar org/kevin/*/*
 
+create_db
 }
 
 clean(){
@@ -44,6 +44,13 @@ rm -rf sources.txt
 cd $BASEDIR
 echo DELETING GENERATED DIRECTORY $BASEDIR/bin/org
 rm -rf bin/org/
+}
+
+create_db(){
+echo Creating the database
+cd $BUILD_DIR
+cd output
+$BASEDIR/db/installers/winTools/sqlite-tools-win32-x86-3120200/sqlite3.exe kevin.db "CREATE TABLE test (ID INT PRIMARY KEY NOT NULL)"
 }
 
 clean

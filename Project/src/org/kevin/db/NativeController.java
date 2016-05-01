@@ -23,7 +23,7 @@ public class NativeController {
 		//Register driver
 	    Class.forName("org.sqlite.JDBC");
 	    //Create the connection
-	    c = DriverManager.getConnection("jdbc:sqlite:test.db");
+	    c = DriverManager.getConnection("jdbc:sqlite:kevin.db");
 	}
 	
 	
@@ -34,7 +34,7 @@ public class NativeController {
 	 */
 	public void CreateTable(String tableName) throws SQLException{
 		Statement stmt = c.createStatement();
-		String execute = "CREATE TABLE COMPANY " +
+		String execute = "CREATE TABLE " +tableName+ " " +
                 "(ID INT PRIMARY KEY     NOT NULL," +
                 " NAME           TEXT    NOT NULL, " + 
                 " AGE            INT     NOT NULL, " + 
