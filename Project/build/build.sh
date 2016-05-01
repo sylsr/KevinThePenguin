@@ -71,3 +71,15 @@ $BASEDIR/db/installers/winTools/sqlite-tools-win32-x86-3120200/sqlite3.exe kevin
 
 clean
 compile
+
+if [ $1 == 'debug' ]
+then
+	cd $BUILD_DIR/output
+	cmd.exe /C "java -jar app.jar -zxcvbnmasdfghjklqwertyuiop"
+fi
+
+if [ $1 == 'release' ]
+then
+	cd $BUILD_DIR/output
+	java -jar app.jar
+fi

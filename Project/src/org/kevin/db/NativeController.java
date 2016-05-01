@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.kevin.logger.KevinLogger;
+
 /**
  * @author Tyler
  *Class to add a layer of encapsulation between the DatabaseController 
@@ -20,6 +22,8 @@ public class NativeController {
 	 * @throws ClassNotFoundException When the org.sqlite.JDBC driver class was not found. Check the class path.
 	 */
 	public NativeController() throws SQLException, ClassNotFoundException{
+		KevinLogger log = new KevinLogger();
+		log.log("Connecting to database", KevinLogger.MessageType.STATUS);
 		//Register driver
 	    Class.forName("org.sqlite.JDBC");
 	    //Create the connection
@@ -40,7 +44,6 @@ public class NativeController {
                 " AGE            INT     NOT NULL, " + 
                 " ADDRESS        CHAR(50), " + 
                 " SALARY         REAL)";
-		System.out.println(execute);
 		stmt.executeUpdate(execute);
 	    if(stmt!=null){
 	    	stmt.close();
