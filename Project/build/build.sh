@@ -33,6 +33,7 @@ for i in *
 do
 dependencies="$dependencies jars/$i"
 done	
+mkdir $BUILD_DIR/META-INF
 cd $BUILD_DIR/META-INF
 rm -rf MANIFEST.MF
 echo Manifest-Version: 1.0 >> MANIFEST.MF
