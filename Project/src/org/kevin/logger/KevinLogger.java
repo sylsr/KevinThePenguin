@@ -73,7 +73,7 @@ public class KevinLogger {
 				System.out.println((char)27 + "[33mWARNING "+formattedDate+" : "+msg);
 				break;
 			case STATUS:
-				System.out.println(formattedDate+" : "+msg);
+				System.out.println((char)27 + "[37m"+formattedDate+" : "+msg);
 				break;
 			}
 		}else{

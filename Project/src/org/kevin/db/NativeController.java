@@ -15,6 +15,7 @@ import org.kevin.logger.KevinLogger;
  */
 public class NativeController {
 	Connection c = null;
+	KevinLogger log=null;
 	
 	/**
 	 * Default constructor.
@@ -22,8 +23,8 @@ public class NativeController {
 	 * @throws ClassNotFoundException When the org.sqlite.JDBC driver class was not found. Check the class path.
 	 */
 	public NativeController() throws SQLException, ClassNotFoundException{
-		KevinLogger log = new KevinLogger();
-		log.log("Connecting to database", KevinLogger.MessageType.STATUS);
+		log = new KevinLogger();
+		log.log("Connecting to database", KevinLogger.MessageType.WARNING);
 		//Register driver
 	    Class.forName("org.sqlite.JDBC");
 	    //Create the connection
@@ -38,12 +39,29 @@ public class NativeController {
 	 */
 	public void CreateTable(String tableName) throws SQLException{
 		Statement stmt = c.createStatement();
+		//TODO: create the method so that you can choose the layout of the table
 		String execute = "CREATE TABLE " +tableName+ " " +
                 "(ID INT PRIMARY KEY     NOT NULL," +
                 " NAME           TEXT    NOT NULL, " + 
                 " AGE            INT     NOT NULL, " + 
                 " ADDRESS        CHAR(50), " + 
                 " SALARY         REAL)";
+		log.log("Attemping to create table: "+tableName, KevinLogger.MessageType.STATUS);
+		stmt.executeUpdate(execute);
+	    if(stmt!=null){
+	    	stmt.close();
+	    }
+	}
+	
+	/**
+	 * Deletes a table
+	 * @param tableName name of the table you would like to delete
+	 * @throws SQLException thrown when the command could not be executed.
+	 */
+	public void DeleteTable(String tableName) throws SQLException{
+		Statement stmt = c.createStatement();
+		String execute = "DROP TABLE kevin.db."+tableName;
+		log.log("Attemping to drop table: "+tableName, KevinLogger.MessageType.STATUS);
 		stmt.executeUpdate(execute);
 	    if(stmt!=null){
 	    	stmt.close();

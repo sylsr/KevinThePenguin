@@ -33,7 +33,7 @@ public class LaunchKevin {
 		}else{
 			log = new KevinLogger("releaseMode");
 		}
-		log.log("Starting frame", KevinLogger.MessageType.STATUS);
+		log.log("Starting frame", KevinLogger.MessageType.ERROR);
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500,500));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
