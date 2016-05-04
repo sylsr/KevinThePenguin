@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 
 import org.kevin.db.NativeController;
+import org.kevin.graphics.Display;
 import org.kevin.logger.KevinLogger;
 
 /**
@@ -37,7 +38,9 @@ public class LaunchKevin {
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500,500));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		Display panel = new Display();
+		panel.init();
+		frame.getContentPane().add(panel);
 		frame.pack();
 		frame.setVisible(true);
 		
