@@ -37,6 +37,7 @@ public class LaunchKevin {
 		log.log("Starting frame", KevinLogger.MessageType.STATUS);
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500,500));
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Display panel = new Display();
 		panel.init();

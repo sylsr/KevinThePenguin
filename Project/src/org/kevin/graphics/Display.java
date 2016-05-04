@@ -5,7 +5,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,16 +20,25 @@ import javax.swing.Timer;
 public class Display extends JPanel{
 	RenderedGraphics bank = new RenderedGraphics();
 	Graphics2D g;
+	BufferedImage bi;
 	
 	public void init(){
 		bank.init();
 		Graphics2D g = bank.img1[0].createGraphics();
 		this.setFocusable(true);
 		this.requestFocus();
-		paintComponent(g, bank.img1[0]);
+		try {
+			ImageIO.write(bank.img1[0], "PNG", new File("C:\\Users\\Josh\\workspace\\Test\\000.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		bi = bank.img1[0];
+		paintComponent(g);
+		
 	}
 	
-	public void paintComponent(Graphics g, BufferedImage bi){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		final int width = getWidth();
 		final int height = getHeight();
