@@ -47,7 +47,7 @@ echo Copying the img folder into the bundle.
 cp -r $BASEDIR/img $BUILD_DIR/output/img/
 
 echo Copying the config folder into the bundle.
-cp -r $BASEDIR/config $BUILD_DIR/output/img
+cp -r $BASEDIR/config $BUILD_DIR/output/config
 
 echo Creating jar file in $BUILD_DIR/output
 cd $BASEDIR
