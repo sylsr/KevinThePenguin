@@ -14,8 +14,8 @@ import java.net.URI;
  * Basic SVG render tool
  */
 public class GraphicsCreator {
-	int x=500;
-	int y=500;
+	int x=540;
+	int y=540;
 	public void GraphicsCreator(){
 		int x;
 		int y;

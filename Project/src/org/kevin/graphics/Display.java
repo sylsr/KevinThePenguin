@@ -27,12 +27,6 @@ public class Display extends JPanel{
 		Graphics2D g = bank.img1[0].createGraphics();
 		this.setFocusable(true);
 		this.requestFocus();
-		try {
-			ImageIO.write(bank.img1[0], "PNG", new File("C:\\Users\\Josh\\workspace\\Test\\000.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		bi = bank.img1[0];
 		paintComponent(g);
 		
@@ -44,7 +38,7 @@ public class Display extends JPanel{
 		final int height = getHeight();
 		g.setColor(getBackground());
 		g.fillRect(0, 0, width, height);
-		g.drawImage(bi, 0, 0, 500, 500, null);
+		g.drawImage(bi, 0, 0, 540, 540, null);
 		
 	}
 }
