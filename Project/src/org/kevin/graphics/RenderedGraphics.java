@@ -11,6 +11,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+import javax.imageio.ImageIO;
+
 import com.kitfox.svg.SVGException;
 
 /**
@@ -45,11 +47,9 @@ public class RenderedGraphics {
 		Location = prop.getProperty("Location");
 		IMG1 = prop.getProperty("img1");
 		IMG2 = prop.getProperty("img2");
-		System.out.println(prop.getProperty("img1_length"));
 		img1_max = Integer.parseInt(prop.getProperty("img1_length"));
 		img2_max = Integer.parseInt(prop.getProperty("img2_length"));
-		System.out.println(prop.getProperty("img2_length"));
-		
+		this.img1 = new BufferedImage[img1_max + 1];
 		
 		render();
 		
@@ -57,14 +57,15 @@ public class RenderedGraphics {
 	
 	public void render(){
 		File file;
+		
 		for(int a = 0; a<=img1_max; a++){
+			this.img1[a] = new BufferedImage(500, 500, BufferedImage.TYPE_INT_ARGB);
 			System.out.println("Test1");
 			file = new File(System.getProperty("user.dir") + Location + IMG1 + a + ".svg");
 			System.out.println("Test2");
 			System.out.println(file);
 			System.out.println("Test3");
 			img1[a] = renderTool.render(file);
-			System.out.println("Test4");
 		}
 		
 	}

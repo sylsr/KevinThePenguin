@@ -37,7 +37,7 @@ public class GraphicsCreator {
 			doc = container.getDiagram(container.loadSVG(file.toURL()));
 //			doc = transform(doc);
 			doc.render(g);
-		} catch (MalformedURLException | SVGException e1) {
+		} catch (MalformedURLException | SVGException e1){
 			// TODO Auto-generated catch block
 			
 			e1.printStackTrace();
