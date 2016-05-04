@@ -111,6 +111,9 @@ public class NativeController {
 		String execute = "SELECT * FROM "+tableName;
 		log.log("Attempting to select all data from "+tableName, KevinLogger.MessageType.STATUS);
 		ResultSet rs=stmt.executeQuery(execute);
+		while(rs.next()){
+			
+		}
 	    if(stmt!=null){
 	    	stmt.close();
 	    }

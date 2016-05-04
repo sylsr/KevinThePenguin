@@ -43,6 +43,12 @@ echo Main-Class: org.kevin.main.LaunchKevin >>MANIFEST.MF
 echo Copying libs folder
 cp -r $BASEDIR/lib/ $BUILD_DIR/output/jars/
 
+echo Copying the img folder into the bundle.
+cp -r $BASEDIR/img $BUILD_DIR/output/img/
+
+echo Copying the config folder into the bundle.
+cp -r $BASEDIR/config $BUILD_DIR/output/img
+
 echo Creating jar file in $BUILD_DIR/output
 cd $BASEDIR
 cd bin
@@ -68,6 +74,12 @@ cd $BUILD_DIR
 cd output
 $BASEDIR/db/installers/winTools/sqlite-tools-win32-x86-3120200/sqlite3.exe kevin.db "CREATE TABLE test (ID INT PRIMARY KEY NOT NULL)"
 }
+
+if [ -z $1 ]
+then
+	echo Please see https://github.com/sylsr/KevinThePenguin/wiki/Build for build instructions.
+	exit 1
+fi
 
 if [ $1 == 'clean' ]
 then

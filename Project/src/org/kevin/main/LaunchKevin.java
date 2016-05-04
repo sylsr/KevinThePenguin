@@ -46,7 +46,7 @@ public class LaunchKevin {
 		
 		try {
 			NativeController db = new NativeController();
-			db.CreateTable("another");
+			db.CreateTable("another", "Nothing");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
