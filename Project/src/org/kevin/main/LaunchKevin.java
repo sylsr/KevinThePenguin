@@ -34,7 +34,7 @@ public class LaunchKevin {
 		}else{
 			log = new KevinLogger("releaseMode");
 		}
-		log.log("Starting frame", KevinLogger.MessageType.ERROR);
+		log.log("Starting frame", KevinLogger.MessageType.STATUS);
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500,500));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +46,7 @@ public class LaunchKevin {
 		
 		try {
 			NativeController db = new NativeController();
-			db.CreateTable("another");
+			db.CreateTable("another", "Nothing");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

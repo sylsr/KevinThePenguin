@@ -14,7 +14,7 @@ public class DatabaseTester {
 	public static void main(String[]args){
 		try {
 			NativeController db = new NativeController();
-			db.CreateTable("another");
+			db.CreateTable("another" ,"ID INT PRIMARY KEY     NOT NULL");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
