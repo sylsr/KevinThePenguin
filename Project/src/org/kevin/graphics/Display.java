@@ -1,16 +1,9 @@
 package org.kevin.graphics;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  * @author Josh
@@ -18,16 +11,23 @@ import javax.swing.Timer;
  * and displays it on the screen using the data it calls from RenderedGraphics.
  */
 public class Display extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	RenderedGraphics bank = new RenderedGraphics();
 	Graphics2D g;
 	BufferedImage bi;
 	
+	/**
+	 * Initiates the image bank and (for now) paints a simple graphic.
+	 */
 	public void init(){
 		bank.init();
-		Graphics2D g = bank.img1[0].createGraphics();
+		Graphics2D g = bank.dat[0][0].createGraphics();
 		this.setFocusable(true);
 		this.requestFocus();
-		bi = bank.img1[0];
+		bi = bank.dat[0][0];
 		paintComponent(g);
 		
 	}

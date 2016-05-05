@@ -1,73 +1,74 @@
 package org.kevin.graphics;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Properties;
-
-import javax.imageio.ImageIO;
-
-import com.kitfox.svg.SVGException;
 
 /**
  * @author Josh
- *
+ * Bank of all the buffered images. dat[][] is where they are all stored.
  */
 public class RenderedGraphics {
 	String Location = "";
 	String IMG1 = "";
+	int images;
 	int img1_max = 0;
 	String IMG2 = "";
+	String img_name[];
 	int img2_max = 0;
-	
+	int img_max[];
+	BufferedImage dat[][];
 	BufferedImage img1[];
 	BufferedImage img2[];
 	GraphicsCreator renderTool = new GraphicsCreator();
 	URI f;
+	
+	
+	/**
+	 * Reads the imgs.properties file and allocates memory as appropriate
+	 */
 	public void init(){
 		Properties prop = new Properties();
 		InputStream input = null;
-		
-
-		System.out.println(System.getProperty("user.dir"));
 		try {
 			input = new FileInputStream(System.getProperty("user.dir") + "\\config\\imgs.properties");
 			prop.load(input);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Failed to load imgs.config");
 			e.printStackTrace();
 		}
-		
 		Location = prop.getProperty("Location");
-		IMG1 = prop.getProperty("img1");
-		IMG2 = prop.getProperty("img2");
-		img1_max = Integer.parseInt(prop.getProperty("img1_length"));
-		img2_max = Integer.parseInt(prop.getProperty("img2_length"));
-		this.img1 = new BufferedImage[img1_max + 1];
+		images = Integer.parseInt(prop.getProperty("images"));
+		dat = new BufferedImage[images][];
+		img_max = new int[images];
+		img_name = new String[images];
 		
+		for(int a = 0; a< images; a++){
+			img_max[a] = Integer.parseInt(prop.getProperty("length" + a));
+			img_name[a]= prop.getProperty(("img" +a));
+		}
+		for(int a = 0; a< images; a++){
+			dat[a] = new BufferedImage[img_max[a]];
+		}
 		render();
 		
 	}
 	
+	/**
+	 * Systematically fills the allocated dat[][] array with rendered images
+	 */
 	public void render(){
 		File file;
-		
-		for(int a = 0; a<=img1_max; a++){
-			this.img1[a] = new BufferedImage(500, 500, BufferedImage.TYPE_INT_ARGB);
-			System.out.println("Test1");
-			file = new File(System.getProperty("user.dir") + Location + IMG1 + a + ".svg");
-			System.out.println("Test2");
-			System.out.println(file);
-			System.out.println("Test3");
-			img1[a] = renderTool.render(file);
+		for(int b = 0; b<images; b++){
+			for(int a = 0; a<img_max[b]; a++){
+				file = new File(System.getProperty("user.dir") + Location + img_name[b] + a + ".svg");
+				this.dat[b][a] = new BufferedImage(540, 540, BufferedImage.TYPE_INT_ARGB);
+				dat[b][a] = renderTool.render(file);
+			}
 		}
-		
 	}
-	
 }

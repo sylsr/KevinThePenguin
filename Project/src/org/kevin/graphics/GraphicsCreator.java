@@ -7,7 +7,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 
 /**
  * @author Josh
@@ -16,9 +15,10 @@ import java.net.URI;
 public class GraphicsCreator {
 	int x=540;
 	int y=540;
-	public void GraphicsCreator(){
-		int x;
-		int y;
+	/**
+	 * Todo: add constructor variables and stuff
+	 */
+	public GraphicsCreator(){
 	}
 	
 	/**
@@ -27,6 +27,7 @@ public class GraphicsCreator {
 	 * @throws MalformedURLException 
 	 * @throws SVGException
 	 */
+	@SuppressWarnings("deprecation")
 	public BufferedImage render(File file){
 		BufferedImage image = new BufferedImage(x, y, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = image.createGraphics();
@@ -35,10 +36,10 @@ public class GraphicsCreator {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		try {
 			doc = container.getDiagram(container.loadSVG(file.toURL()));
-//			doc = transform(doc);
+			doc = transform(doc);
 			doc.render(g);
 		} catch (MalformedURLException | SVGException e1){
-			// TODO Auto-generated catch block
+			System.out.println("Failed to load/render svg properly");
 			
 			e1.printStackTrace();
 		}
@@ -53,6 +54,7 @@ public class GraphicsCreator {
 	 */
 	public SVGDiagram transform(SVGDiagram toTransform){
 		//apply transformations to fit image to selected resolution
+		//todo: actually add transformation formula
 		return toTransform;
 	}
 }
