@@ -17,3 +17,4 @@ Project/db/installers/win32/sqlite3.def
 Project/db/installers/win64/sqlite3.def
 Project/log.txt
 Wiki.url
+Project/kevin.db
