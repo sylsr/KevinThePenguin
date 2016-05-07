@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="540px"
+	 height="540px" viewBox="0 0 540 540" enable-background="new 0 0 540 540" xml:space="preserve">
+<g id="Layer_1">
+</g>
+<g id="Layer_2_1_">
+	<g>
+		<defs>
+			<polygon id="SVGID_1_" points="540,540 270.045,540 540,0 540,270 			"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g id="Layer_1_2_" clip-path="url(#SVGID_2_)">
+			<g id="Layer_1_1_">
+				<rect fill="#188ECE" width="540" height="540"/>
+				
+					<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="489.4189" y1="846.8584" x2="365.7762" y2="723.2154" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#097AB5;stop-opacity:0.4"/>
+					<stop  offset="0.9852" style="stop-color:#097AB5;stop-opacity:0"/>
+				</linearGradient>
+				<path fill="url(#SVGID_3_)" d="M539.91,0.105C427.512-10.214,12.042,392.592,0,538.685
+					C172.61,564.851,549.51,194.168,539.91,0.105z"/>
+				
+					<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="369.1875" y1="738.291" x2="199.4308" y2="568.5343" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="0.4926" style="stop-color:#FFFFFF;stop-opacity:0.3"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+				</linearGradient>
+				<path fill="url(#SVGID_4_)" d="M0,125.608C39.34,81.17,82.154,38.571,126.476,0H401.73
+					C315.605,154.26,156.173,326.896,0,423.938V125.608z"/>
+				
+					<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="641.9463" y1="999.0234" x2="472.7656" y2="829.8425" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="0.4926" style="stop-color:#FFFFFF;stop-opacity:0.3"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+				</linearGradient>
+				<path fill="url(#SVGID_5_)" d="M158,540c91.414-144.73,238.792-295.246,382.09-383.756L540,451.391
+					c-26.025,30.044-56.82,60.784-85.5,88.609H158z"/>
+				
+					<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="414.0449" y1="771.9551" x2="684.0002" y2="501.9998" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+				</linearGradient>
+				<rect x="270.045" fill="url(#SVGID_6_)" width="269.955" height="269.955"/>
+				
+					<linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="413.9551" y1="771.9551" x2="144" y2="1041.9099" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+				</linearGradient>
+				<rect y="269.955" fill="url(#SVGID_7_)" width="269.955" height="269.955"/>
+				
+					<linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="413.9561" y1="771.9561" x2="144.0008" y2="502.0008" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+				</linearGradient>
+				<rect fill="url(#SVGID_8_)" width="269.955" height="269.955"/>
+				
+					<linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="414.0459" y1="771.9561" x2="684.0006" y2="1041.9105" gradientTransform="matrix(1 0 0 1 -144 -502)">
+					<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
+					<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
+				</linearGradient>
+				<rect x="270.045" y="269.955" fill="url(#SVGID_9_)" width="269.955" height="269.955"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
