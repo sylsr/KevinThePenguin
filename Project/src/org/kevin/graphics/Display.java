@@ -27,7 +27,7 @@ public class Display extends JPanel{
 		Graphics2D g = bank.dat[0][0].createGraphics();
 		this.setFocusable(true);
 		this.requestFocus();
-		bi = bank.dat[4][0];
+		bi = bank.dat[2][27];
 		paintComponent(g);
 		
 	}
