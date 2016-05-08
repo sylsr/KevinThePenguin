@@ -27,7 +27,7 @@ public class NativeController {
 		log = new KevinLogger();
 		log.log("Connecting to database", KevinLogger.MessageType.STATUS);
 		//Register driver
-	    Class.forName("org.sqlite.JDBCs");
+	    Class.forName("org.sqlite.JDBC");
 	    //Create the connection
 	    c = DriverManager.getConnection("jdbc:sqlite:kevin.db");
 	}

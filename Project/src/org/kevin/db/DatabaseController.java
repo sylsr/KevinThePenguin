@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import org.kevin.logger.KevinLogger;
 
+import sun.misc.Queue;
+
 /**
  * @author Tyler
  *
@@ -11,6 +13,7 @@ import org.kevin.logger.KevinLogger;
 public class DatabaseController implements Runnable {
 	NativeController nc;
 	KevinLogger log = new KevinLogger();
+	Queue insertQueue = new Queue();
 	
 	/**
 	 * Default constructor
@@ -28,6 +31,7 @@ public class DatabaseController implements Runnable {
 	@Override
 	public void run() {
 		while(true){
+			
 		}
 		
 	}
