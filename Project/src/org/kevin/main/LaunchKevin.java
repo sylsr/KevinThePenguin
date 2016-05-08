@@ -1,13 +1,14 @@
 package org.kevin.main;
 
 import java.awt.Dimension;
-import java.sql.SQLException;
 
 import javax.swing.JFrame;
 
-import org.kevin.db.NativeController;
+import org.kevin.controls.Controller;
+import org.kevin.db.DatabaseController;
 import org.kevin.graphics.Display;
 import org.kevin.logger.KevinLogger;
+import org.kevin.ui.UserInterface;
 
 /**
  * Main class for the game.
@@ -35,6 +36,7 @@ public class LaunchKevin {
 			log = new KevinLogger("releaseMode");
 		}
 		log.log("Starting frame", KevinLogger.MessageType.STATUS);
+		startGameThreads();
 		JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(960,540));
 		frame.setResizable(true);
@@ -43,20 +45,17 @@ public class LaunchKevin {
 		panel.init();
 		frame.getContentPane().add(panel);
 		frame.pack();
-		frame.setVisible(true);
+		frame.setVisible(true);		
+	}
+	
+	private static void startGameThreads(){
+		Thread UIThread = new Thread(new UserInterface());
+		Thread controlThread = new Thread(new Controller());
+		Thread DBThread = new Thread(new DatabaseController());
 		
-		try {
-			NativeController db = new NativeController();
-			db.CreateTable("another", "Nothing");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			
-			e.printStackTrace();
-		}
-		
+		UIThread.start();
+		controlThread.start();
+		DBThread.start();
 	}
 	
 	

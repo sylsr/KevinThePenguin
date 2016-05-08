@@ -16,6 +16,7 @@ import org.kevin.logger.KevinLogger;
 public class NativeController {
 	Connection c = null;
 	KevinLogger log=null;
+	//TODO: Set a timeout for all commands
 	
 	/**
 	 * Default constructor.
@@ -26,7 +27,7 @@ public class NativeController {
 		log = new KevinLogger();
 		log.log("Connecting to database", KevinLogger.MessageType.STATUS);
 		//Register driver
-	    Class.forName("org.sqlite.JDBC");
+	    Class.forName("org.sqlite.JDBCs");
 	    //Create the connection
 	    c = DriverManager.getConnection("jdbc:sqlite:kevin.db");
 	}
@@ -49,11 +50,11 @@ public class NativeController {
      *           " ADDRESS        CHAR(50), " + 
      *           " SALARY         REAL)"
 	 * @param tableName name of the table you want to create
+	 * @param dataArgs the data args for the table being created
 	 * @throws SQLException thrown when the command could not be executeded, the database failed to create.
 	 */
 	public void CreateTable(String tableName, String dataArgs) throws SQLException{
 		Statement stmt = c.createStatement();
-		//TODO: create the method so that you can choose the layout of the table
 		String execute = "CREATE TABLE " +tableName+ " " +"(" + dataArgs+")";
 		log.log("Attemping to create table: "+tableName, KevinLogger.MessageType.STATUS);
 		stmt.executeUpdate(execute);
@@ -106,19 +107,121 @@ public class NativeController {
 	    }
 	}
 	
-	public void SelectAllFrom(String tableName) throws SQLException{
+	/**
+	 * This method will select ALL data from a table and return the ENTIRE result set.
+	 * Example:
+	 * if tableName=KEVIN
+	 * Then this method will run:
+	 * SELECT * FROM KEVIN
+	 * @param tableName the table name to select the data name
+	 * @return the result set I.E. ALL data from the table name
+	 * @throws SQLException thrown when the data could not be elected.
+	 */
+	public ResultSet SelectAllFrom(String tableName) throws SQLException{
 		Statement stmt = c.createStatement();
-		String execute = "SELECT * FROM "+tableName;
+		String execute = "SELECT * FROM "+tableName+";";
 		log.log("Attempting to select all data from "+tableName, KevinLogger.MessageType.STATUS);
 		ResultSet rs=stmt.executeQuery(execute);
-		while(rs.next()){
-			
-		}
+		
+	    if(stmt!=null){
+	    	stmt.close();
+	    }
+	    return rs;
+	}
+	
+	/**
+	 * This method will select all data from a table with the matched record string
+	 * Example:
+	 * if record=foo
+	 * and tableName=KEVIN
+	 * Then this method will run:
+	 * SELECT foo FROM KEVIN
+	 * @param record the data record to retrieve
+	 * @param tableName the table to retrieve the table from
+	 * @return the result set of the query
+	 * @throws SQLException thrown when the command could not be executed
+	 */
+	public ResultSet SelectSpecificRecord(String record, String tableName) throws SQLException{
+		Statement stmt = c.createStatement();
+		String execute = "SELECT "+record+" FROM "+tableName+";";
+		log.log("Attempting to select record "+record+" from "+tableName, KevinLogger.MessageType.STATUS);
+		ResultSet rs=stmt.executeQuery(execute);
+	    if(stmt!=null){
+	    	stmt.close();
+	    }
+	    return rs;
+	}
+	
+	/**
+	 * This method will select all data from a table with the matched record string where data has matched
+	 * Example:
+	 * if record=foo
+	 * and tableName=KEVIN
+	 * and Snum=201
+	 * Then this method will run:
+	 * SELECT foo FROM KEVIN WHERE Snum = 201;
+	 * @param record record the data record to retrieve
+	 * @param tableName tableName the table to retrieve the table from
+	 * @param where returns the data that matches a condition
+	 * @return the ResultSet of the matched data
+	 * @throws SQLException thrown when the command could not be executed
+	 */
+	public ResultSet SelectSpecificRecordWhere(String record, String tableName, String where) throws SQLException{
+		Statement stmt = c.createStatement();
+		String execute = "SELECT "+record+" FROM "+tableName+" WHERE "+where+";";
+		log.log("Attempting to select record "+record+" FROM "+tableName+" WHERE "+where, KevinLogger.MessageType.STATUS);
+		ResultSet rs=stmt.executeQuery(execute);
+	    if(stmt!=null){
+	    	stmt.close();
+	    }
+	    return rs;
+	}
+	
+	/**
+	 * This method will select all data from a table with the matched record string where data has matched
+	 * Example:
+	 * and tableName=KEVIN
+	 * and Snum=201
+	 * Then this method will run:
+	 * SELECT * FROM KEVIN WHERE Snum = 201;
+	 * @param tableName tableName the table to retrieve the table from
+	 * @param where returns the data that matches a condition
+	 * @return the ResultSet of the matched data
+	 * @throws SQLException thrown when the command could not be executed
+	 */
+	public ResultSet SelectAllWhere(String tableName, String where) throws SQLException{
+		Statement stmt = c.createStatement();
+		String execute = "SELECT * FROM "+tableName+" WHERE "+where+";";
+		log.log("Attempting to select record ALL FROM "+tableName+" WHERE "+where, KevinLogger.MessageType.STATUS);
+		ResultSet rs=stmt.executeQuery(execute);
+	    if(stmt!=null){
+	    	stmt.close();
+	    }
+	    return rs;
+	}
+	
+	/**
+	 * This method will select all data from a table with the matched record string where data has matched
+	 * Example:
+	 * and tableName=KEVIN
+	 * and setData=SALARY = 25000.00
+	 * and where=ID=1
+	 * Then this method will run:
+	 * UPDATE KEVIN SET SALARY = 25000.00 WHERE ID=1;
+	 * @param tableName the table to update
+	 * @param setData the data to update
+	 * @param where update the data where a condition is met
+	 * @throws SQLException throws when the update could not be performed
+	 */
+	public void UpdateTableWhere(String tableName, String setData, String where) throws SQLException{
+		Statement stmt = c.createStatement();
+		String execute = "UPDATE "+tableName+" SET "+setData+" WHERE "+where+";";
+		log.log("Attempting to update table data in table: "+tableName+" and setting data to: "+setData+" WHERE: "+where, KevinLogger.MessageType.STATUS);
+		stmt.executeUpdate(execute);
 	    if(stmt!=null){
 	    	stmt.close();
 	    }
 	}
-	
 	
 	
 }

@@ -2,6 +2,8 @@ package org.kevin.logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +13,7 @@ import java.util.Date;
  *
  */
 public class KevinLogger {
-	
+
 	static boolean debug=false;
 	/**
 	 * Enumeration for the different types of log messages you can write
@@ -32,14 +34,14 @@ public class KevinLogger {
 		 */
 		STATUS
 	}
-	
+
 	/**
 	 * Default constructor for everything EXCEPT the main entry point of the program (i.e. LaunchKevin)
 	 */
 	public KevinLogger(){
-		
+
 	}
-	
+
 	/**
 	 * Constructor to be used ONLY in the main entry point of the program (i.e. LaunchKevin)
 	 * @param buildArgs if the build args is equal to zxcvbnmasdfghjklqwertyuiop then it was a debug, else it was a release.
@@ -51,7 +53,7 @@ public class KevinLogger {
 			debug=false;
 		}
 	}
-	
+
 	/**
 	 * Write out to the console log or to the log file depending on the build. DO not provide a message formatted like ERROR: blah blah blah
 	 * or WARNING: blah blah blah or STATUS: blah blah blah. That information will be automatically appended and printed out in the correct stream.
@@ -79,7 +81,7 @@ public class KevinLogger {
 		}else{
 			switch(type){
 			case ERROR:
-				
+
 				try {
 					FileWriter fout= new FileWriter("log.txt",true);
 					fout.append((char)27 + "[31mERROR "+formattedDate+" : "+msg);
@@ -90,7 +92,7 @@ public class KevinLogger {
 				}
 				break;
 			case WARNING:
-				
+
 				try {
 					FileWriter fout = new FileWriter("log.txt",true);
 					fout.append((char)27 + "[33mWARNING "+formattedDate+" : "+msg);
@@ -101,7 +103,7 @@ public class KevinLogger {
 				}
 				break;
 			case STATUS:
-				
+
 				try {
 					FileWriter fout = new FileWriter("log.txt",true);
 					fout.append(formattedDate+" : "+msg);
@@ -114,4 +116,85 @@ public class KevinLogger {
 			}
 		}
 	}
+
+	/**
+	 * Write out to the console log or to the log file depending on the build. Just provide the error that was thrown and it will be properly logged.
+	 * The stack trace will be either printed out to the console (during debug build) or printed out to a file during a release build.
+	 * @param e the error that was thrown
+	 * @param type specify the type of message. An error would mean something has gone wrong, a warning identifies something that could potentially
+	 * go wrong but may not, and a status message is just a message that may be helpful in debugging but will not relate directly with an error.
+	 */
+	public void log(Throwable e, MessageType type){
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
+		String formattedDate = sdf.format(date);//Gets the formatted date
+		String msg = stackTraceToString(e);
+		if(debug==true){
+			switch(type){
+			case ERROR:
+				System.err.println((char)27 + "[31mERROR "+formattedDate);
+				System.err.println((char)27 + "[31m"+msg);
+				break;
+			case WARNING:
+				System.err.println((char)27 + "[33mWARNING "+formattedDate);
+				System.out.println((char)27 + "[33m"+msg);
+				break;
+			case STATUS:
+				System.err.println((char)27 + "[37m"+formattedDate);
+				System.out.println((char)27 + "[37m"+msg);
+				break;
+			}
+		}else{
+			switch(type){
+			case ERROR:
+
+				try {
+					FileWriter fout= new FileWriter("log.txt",true);
+					fout.append((char)27 + "[31mERROR "+formattedDate);
+					fout.append((char)27 + "[31m"+msg);
+					fout.append(System.getProperty("line.separator"));
+					fout.close();
+				} catch (IOException err) {
+					//Nothing we can do.
+				}
+				break;
+			case WARNING:
+
+				try {
+					FileWriter fout = new FileWriter("log.txt",true);
+					fout.append((char)27 + "[33mWARNING "+formattedDate);
+					fout.append((char)27 + "[33m"+msg);
+					fout.append(System.getProperty("line.separator"));
+					fout.close();
+				} catch (IOException err) {
+					//Nothing we can do.
+				}
+				break;
+			case STATUS:
+
+				try {
+					FileWriter fout = new FileWriter("log.txt",true);
+					fout.append((char)27+formattedDate);
+					fout.append(msg);
+					fout.append(System.getProperty("line.separator"));
+					fout.close();
+				} catch (IOException err) {
+					//Nothing we can do.
+				}
+				break;
+			}
+		}
+	}
+
+
+
+
+	private  String stackTraceToString(Throwable e) {
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		return sw.toString(); // stack trace as a string
+	}
+
+
 }
